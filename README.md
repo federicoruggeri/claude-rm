@@ -17,7 +17,7 @@ Clone the repository and link the script into a directory on `PATH`.
 
 ```sh
 git clone https://github.com/federicoruggeri/claude-rm.git
-ln -s "$PWD/claude-rm/claude-rm" ~/.local/bin/claude-rm
+ln -s "$PWD/claude-rm/claude-rm.py" ~/.local/bin/claude-rm
 ```
 
 ## Usage
@@ -28,8 +28,9 @@ claude-rm PATTERN   # open the picker with PATTERN as the initial query
 ```
 
 Each row shows the last modification time, the project directory, and a title.
-The title is the one Claude Code generates for the session.
-When a session has no generated title, the row shows its first prompt instead.
+The title is the name set with `/rename` or `claude --name`.
+Without such a name, the row shows the title Claude Code generates for the session.
+When neither exists, the row shows the first prompt of the session.
 The preview pane shows the first eight prompts of the highlighted session.
 
 Press Tab to select several sessions and Enter to delete them.
@@ -50,6 +51,5 @@ Deletion is permanent and cannot be undone.
 
 ## Limitations
 
-Titles set with `/rename` are not shown.
 Do not delete the session that is currently running, because Claude Code recreates its transcript on the next write.
 The script reads the transcript format of Claude Code 2.1.330, which may change in later releases.

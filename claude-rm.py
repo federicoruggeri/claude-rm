@@ -37,11 +37,14 @@ def prompts(path):
 
 
 def title(path):
-    ai = None
+    """Return the latest user-set name, else the latest generated title, else the first prompt."""
+    custom = ai = None
     for r in records(path):
-        if r.get("type") == "ai-title":
+        if r.get("type") == "custom-title":
+            custom = r.get("customTitle")
+        elif r.get("type") == "ai-title":
             ai = r.get("aiTitle")
-    return ai or next(prompts(path), "(no prompt)")
+    return custom or ai or next(prompts(path), "(no prompt)")
 
 
 def preview(path):
